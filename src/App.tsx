@@ -6,6 +6,7 @@ import { InsightsView } from './features/insights/InsightsView';
 import { buildAdvice } from './features/insights/insightsData';
 import { LangProvider, useI18n } from './shared/i18n';
 import { HomeView } from './features/home/HomeView';
+import { CellarLink, CellarOverlay } from './shared/cellar';
 
 type View = { kind: 'home' } | { kind: 'estate' } | { kind: 'plot'; id: string } | { kind: 'insights'; plotId?: string };
 
@@ -99,7 +100,7 @@ function Shell() {
             <span className="ic" aria-hidden="true">✦</span>{t('AI insights', 'AI ანალიზი')}
             {urgent > 0 && <span className="badge" aria-label={t(`${urgent} urgent`, `${urgent} სასწრაფო`)}>{urgent}</span>}
           </button>
-          <a className="nav" href="cellar.html"><span className="ic" aria-hidden="true">◈</span>MyCellar ↗</a>
+          <CellarLink className="nav"><span className="ic" aria-hidden="true">◈</span>MyCellar ↗</CellarLink>
         </nav>
         <div className="sidebarfoot">
           <div>● {t('Demo data · Gurjaani, Kakheti', 'დემო მონაცემები · გურჯაანი, კახეთი')}</div>
@@ -141,6 +142,7 @@ export default function App() {
     <LangProvider>
       <StoreProvider>
         <Shell />
+        <CellarOverlay />
       </StoreProvider>
     </LangProvider>
   );

@@ -1,5 +1,6 @@
 import { useI18n } from '../../shared/i18n';
 import { plotVineCounts, useStore } from '../../shared/store';
+import { CellarLink } from '../../shared/cellar';
 
 // Entry screen: the two halves of Terroir, in the same visual language as MyCellar.
 // MyVineyard = this React app (Challenge 3.4). MyCellar = cellar.html (Challenge 3.1).
@@ -72,7 +73,7 @@ export function HomeView({ openVineyard }: { openVineyard(): void }) {
             <li>{t('Full traceability and Excel export', 'სრული მიკვლევადობა და Excel ექსპორტი')}</li>
             <li>{t('Costs and price per bottle', 'ხარჯები და ბოთლის თვითღირებულება')}</li>
           </ul>
-          <a className="btn btn-primary landing-go" href="cellar.html">{t('Open MyCellar', 'MyCellar-ის გახსნა')} →</a>
+          <CellarLink className="btn btn-primary landing-go">{t('Open MyCellar', 'MyCellar-ის გახსნა')} →</CellarLink>
         </section>
       </div>
     </div>

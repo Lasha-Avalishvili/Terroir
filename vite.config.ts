@@ -6,4 +6,5 @@ import { viteSingleFile } from 'vite-plugin-singlefile';
 // npm run build            -> normal build for Netlify
 export default defineConfig({
   plugins: [react(), ...(process.env.SINGLE ? [viteSingleFile()] : [])],
+  define: { 'import.meta.env.VITE_SINGLE': JSON.stringify(process.env.SINGLE ? '1' : '0') },
 });
