@@ -26,9 +26,7 @@ export function CellarOverlay() {
     const open = async () => {
       const mod = await import('../../public/cellar.html?raw');
       const back = 'href="#" id="terroir-home-link" onclick="parent.postMessage(\'terroir-home\',\'*\');return false;"';
-      // The Demo Data add-on already runs on this page, so drop the embedded copy (no duplicate button).
-      const withoutAddon = mod.default.replace(/<style id="terroir-demo-style">[\s\S]*?<\/style>\s*<script id="terroir-demo-script">[\s\S]*?<\/script>/, '');
-      setHtml(withoutAddon.replace('href="./#home" id="terroir-home-link"', back));
+      setHtml(mod.default.replace('href="./#home" id="terroir-home-link"', back));
     };
     const onMsg = (e: MessageEvent) => { if (e.data === 'terroir-home') setHtml(null); };
     window.addEventListener(OPEN_EVENT, open);
