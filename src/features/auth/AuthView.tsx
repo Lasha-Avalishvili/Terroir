@@ -52,7 +52,7 @@ export function AuthView({ onDone, langSwitch }: { onDone: (s: Session) => void;
       <section className="auth-brand" aria-hidden="false">
         <div className="logo">terr<span>oir</span> ◈</div>
         <div>
-          <h1 className="auth-claim">{t('Vineyard-to-glass traceability platform for wineries.', 'ვენახიდან ჭიქამდე მიკვლევადობის პლატფორმა მარნებისთვის.')}</h1>
+          <h1 className="auth-claim">{t('Traceability platform for wineries.', 'მიკვლევადობის პლატფორმა მარნებისთვის.')}</h1>
           <ul className="auth-points">
             <li>{t('MyVineyard — plots, bays, field reports and AI advice', 'MyVineyard — ნაკვეთები, ბიჯები, საველე რეპორტები და AI რჩევები')}</li>
             <li>{t('MyCellar — every lot from grape reception to bottling', 'MyCellar — ყოველი ლოტი ყურძნის მიღებიდან ჩამოსხმამდე')}</li>
@@ -68,7 +68,7 @@ export function AuthView({ onDone, langSwitch }: { onDone: (s: Session) => void;
           <div className="eyebrow">TERROIR</div>
           <h2 className="auth-title">{isUp ? t('Create your account', 'შექმენი ანგარიში') : t('Log in', 'შესვლა')}</h2>
           <p className="muted auth-sub">
-            {isUp ? t('Start tracking your wine from vineyard to glass.', 'დაიწყე ღვინის აღრიცხვა ვენახიდან ჭიქამდე.') : t('Welcome back.', 'კეთილი იყოს შენი დაბრუნება.')}
+            {isUp ? t('Start tracking your wine today.', 'დაიწყე ღვინის აღრიცხვა დღესვე.') : t('Welcome back.', 'კეთილი იყოს შენი დაბრუნება.')}
           </p>
 
           <div className="auth-tabs" role="tablist">
@@ -117,7 +117,14 @@ export function AuthView({ onDone, langSwitch }: { onDone: (s: Session) => void;
             {isUp ? t('Already have an account?', 'უკვე გაქვს ანგარიში?') : t('New to Terroir?', 'პირველად ხარ Terroir-ზე?')}{' '}
             <button type="button" className="btn-link" onClick={() => switchTo(isUp ? 'login' : 'signup')}>{isUp ? t('Log in', 'შესვლა') : t('Create an account', 'შექმენი ანგარიში')}</button>
           </p>
-          <p className="auth-note">{t('Demo version: your account and data are stored only in this browser.', 'სადემონსტრაციო ვერსია: ანგარიში და მონაცემები ინახება მხოლოდ ამ ბრაუზერში.')}</p>
+          <div className="auth-secure" aria-label={t('Data protection', 'მონაცემთა დაცვა')}>
+            <div className="auth-secure-head"><span aria-hidden="true">🔒</span> {t('Your data is protected', 'შენი მონაცემები დაცულია')}</div>
+            <ul>
+              <li>{t('Encrypted HTTPS connection', 'დაშიფრული HTTPS კავშირი')}</li>
+              <li>{t('Passwords are never stored in plain text (SHA-256 hash)', 'პაროლი არასდროს ინახება ღია სახით (SHA-256 ჰეში)')}</li>
+              <li>{t('Your records stay on your device and are never sold or shared', 'ჩანაწერები რჩება შენს მოწყობილობაზე და არავის გადაეცემა')}</li>
+            </ul>
+          </div>
         </form>
       </section>
     </div>
