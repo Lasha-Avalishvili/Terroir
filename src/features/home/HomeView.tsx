@@ -5,6 +5,11 @@ import { CellarLink } from '../../shared/cellar';
 // Entry screen: the two halves of Terroir, in the same visual language as MyCellar.
 // MyVineyard = this React app (Challenge 3.4). MyCellar = cellar.html (Challenge 3.1).
 
+function cellarLots(): number {
+  // Lots recorded in MyCellar (grape receptions), read from the same browser storage.
+  try { const r = JSON.parse(localStorage.getItem('terroir_reception_v1') || '[]'); return Array.isArray(r) ? r.length : 0; } catch { return 0; }
+}
+
 export function HomeView({ openVineyard }: { openVineyard(): void }) {
   const i18n = useI18n();
   const { t } = i18n;
@@ -62,7 +67,7 @@ export function HomeView({ openVineyard }: { openVineyard(): void }) {
             <span className="pill">{t('Live demo data', 'დემო მონაცემები')}</span>
           </div>
           <div className="landing-stats">
-            <div className="stat card"><span className="stat-label">{t('Wine lots', 'ღვინის ლოტები')}</span><span className="num">5</span></div>
+            <div className="stat card"><span className="stat-label">{t('Wine lots', 'ღვინის ლოტები')}</span><span className="num">{cellarLots()}</span></div>
             <div className="stat card"><span className="stat-label">{t('Tanks', 'ტანკები')}</span><span className="num">10</span></div>
             <div className="stat card"><span className="stat-label">{t('Qvevri', 'ქვევრები')}</span><span className="num">15</span></div>
             <div className="stat card"><span className="stat-label">{t('Barrels', 'კასრები')}</span><span className="num">30</span></div>

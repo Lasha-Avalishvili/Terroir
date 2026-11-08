@@ -7,6 +7,8 @@ import { buildAdvice } from './features/insights/insightsData';
 import { LangProvider, useI18n } from './shared/i18n';
 import { HomeView } from './features/home/HomeView';
 import { CellarLink, CellarOverlay } from './shared/cellar';
+import { AuthView } from './features/auth/AuthView';
+import { getSession, signOut, type Session } from './shared/auth';
 
 type View = { kind: 'home' } | { kind: 'estate' } | { kind: 'plot'; id: string } | { kind: 'insights'; plotId?: string };
 
@@ -29,6 +31,7 @@ function Shell() {
   const { t } = i;
   const [view, setView] = useState<View>(parseHash);
   const [toastMsg, setToastMsg] = useState('');
+  const [session, setSessionState] = useState<Session | null>(getSession);
   const timer = useRef<number>();
 
   useEffect(() => {
@@ -64,12 +67,28 @@ function Shell() {
     </div>
   );
 
+  if (!session) {
+    return <AuthView langSwitch={langSwitch} onDone={(s) => { setSessionState(s); go({ kind: 'home' }); }} />;
+  }
+
+  function doSignOut() {
+    signOut();
+    setSessionState(null);
+    try { history.replaceState(null, '', '#login'); } catch { /* ignore */ }
+  }
+  const userChip = (
+    <div className="user-chip">
+      <span>{t('Signed in as', 'შესული ხარ როგორც')} <b>{session.name || session.email}</b></span>
+      <button type="button" className="signout" onClick={doSignOut}>{t('Sign out', 'გასვლა')}</button>
+    </div>
+  );
+
   if (view.kind === 'home') {
     return (
       <div className="landing">
         <div className="top">
           <div className="logo logo-dark">terr<span>oir</span> ◈</div>
-          <div className="topright"><span className="pill">{t('DEMO DATA', 'დემო მონაცემები')}</span>{langSwitch}</div>
+          <div className="topright">{userChip}<span className="pill">{t('DEMO DATA', 'დემო მონაცემები')}</span>{langSwitch}</div>
         </div>
         <div className="content">
           <HomeView openVineyard={() => go({ kind: 'estate' })} />
@@ -112,7 +131,7 @@ function Shell() {
       <main className="main">
         <div className="top">
           <div className="crumb">TERROIR / MYVINEYARD / <b>{crumb}</b></div>
-          <div className="topright"><span className="pill">{t('DEMO DATA', 'დემო მონაცემები')}</span>{langSwitch}</div>
+          <div className="topright">{userChip}<span className="pill">{t('DEMO DATA', 'დემო მონაცემები')}</span>{langSwitch}</div>
         </div>
         <div className="content page">
           {view.kind === 'estate' && <EstateView openPlot={(id) => go({ kind: 'plot', id })} toast={toast} />}
