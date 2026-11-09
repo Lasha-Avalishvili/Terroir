@@ -78,8 +78,8 @@ function Shell() {
   }
   const userChip = (
     <div className="user-chip">
-      <span>{t('Signed in as', 'შესული ხარ როგორც')} <b>{session.name || session.email}</b></span>
-      <button type="button" className="signout" onClick={doSignOut}>{t('Sign out', 'გასვლა')}</button>
+      <span>{session.guest ? <b>{t('Guest mode', 'სტუმრის რეჟიმი')}</b> : <>{t('Signed in as', 'შესული ხარ როგორც')} <b>{session.name || session.email}</b></>}</span>
+      <button type="button" className="signout" onClick={doSignOut}>{session.guest ? t('Log in / Sign up', 'შესვლა / რეგისტრაცია') : t('Sign out', 'გასვლა')}</button>
     </div>
   );
 

@@ -2,7 +2,7 @@
 // Passwords are never stored as typed — only a salted SHA-256 hash.
 // This is a front-end demo gate, not real security: a production version needs a server (e.g. Netlify Identity or Supabase).
 
-export type Session = { email: string; name: string; winery: string; at: string };
+export type Session = { email: string; name: string; winery: string; at: string; guest?: boolean };
 type Account = { name: string; winery: string; salt: string; hash: string; created: string };
 
 const USERS = 'terroir-users';
@@ -41,6 +41,12 @@ function setSession(s: Session) {
 }
 export function signOut() {
   try { localStorage.removeItem(SESSION); } catch { /* ignore */ }
+}
+
+export function enterAsGuest(name: string): Session {
+  const s: Session = { email: 'guest', name, winery: '', at: new Date().toISOString(), guest: true };
+  setSession(s);
+  return s;
 }
 
 export type AuthError = 'exists' | 'unknown' | 'wrong';

@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { useI18n } from '../../shared/i18n';
-import { logIn, signUp, type Session } from '../../shared/auth';
+import { enterAsGuest, logIn, signUp, type Session } from '../../shared/auth';
 
 type Mode = 'login' | 'signup';
 
@@ -111,6 +111,12 @@ export function AuthView({ onDone, langSwitch }: { onDone: (s: Session) => void;
 
           <button className="btn btn-primary auth-submit" type="submit" disabled={busy}>
             {busy ? '…' : isUp ? t('Create account', 'ანგარიშის შექმნა') : t('Log in', 'შესვლა')}
+          </button>
+
+          <div className="auth-or"><span>{t('or', 'ან')}</span></div>
+          <button type="button" className="auth-guest" onClick={() => onDone(enterAsGuest(t('Guest', 'სტუმარი')))}>
+            {t('Continue as guest', 'სტუმრად შესვლა')} →
+            <small>{t('No registration — explore the demo right away', 'რეგისტრაციის გარეშე — დემოს ნახვა ახლავე')}</small>
           </button>
 
           <p className="auth-switch muted">
