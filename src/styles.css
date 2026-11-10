@@ -325,6 +325,8 @@ body::before { content: ''; position: fixed; inset: 0 0 auto; height: env(safe-a
 .landing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; }
 .landing-card { padding: 22px; display: grid; gap: 16px; align-content: start; }
 .landing-card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.landing-orn { width: 210px; height: 70px; flex: none; margin: -4px 0 -8px auto; }
+@media (max-width: 720px) { .landing-orn { display: none; } }
 .landing-title { font-family: var(--f-display); font-weight: 500; font-size: 28px; margin-top: 6px; }
 .landing-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
 .landing-stats .stat { box-shadow: none; padding: 13px; }
