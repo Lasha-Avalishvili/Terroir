@@ -50,7 +50,7 @@ export function AuthView({ onDone, langSwitch }: { onDone: (s: Session) => void;
   return (
     <div className="auth">
       <section className="auth-brand" aria-hidden="false">
-        <div className="logo">terr<span>oir</span> ◈</div>
+        <div className="logo">Terr<span>oir</span> ◈</div>
         <div>
           <h1 className="auth-claim">{t('Traceability platform for wineries.', 'მიკვლევადობის პლატფორმა მარნებისთვის.')}</h1>
           <ul className="auth-points">
@@ -59,7 +59,6 @@ export function AuthView({ onDone, langSwitch }: { onDone: (s: Session) => void;
             <li>{t('Reports for the Wine Agency in one click', 'რეპორტი ღვინის სააგენტოსთვის ერთი დაჭერით')}</li>
           </ul>
         </div>
-        <div className="auth-foot">Gurjaani, Kakheti · WINOTHON 2026</div>
       </section>
 
       <section className="auth-panel">

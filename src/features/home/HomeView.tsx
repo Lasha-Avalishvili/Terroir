@@ -38,7 +38,6 @@ export function HomeView({ openVineyard }: { openVineyard(): void }) {
         <section className="card landing-card">
           <div className="landing-card-head">
             <div>
-              <div className="eyebrow">{t('Challenge 3.4 · Vineyard', 'გამოწვევა 3.4 · ვენახი')}</div>
               <h2 className="landing-title">MyVineyard</h2>
             </div>
             <img className="landing-orn" src="./orn-vine.svg" alt="" aria-hidden="true" />
@@ -62,7 +61,6 @@ export function HomeView({ openVineyard }: { openVineyard(): void }) {
         <section className="card landing-card">
           <div className="landing-card-head">
             <div>
-              <div className="eyebrow">{t('Challenge 3.1 · Cellar', 'გამოწვევა 3.1 · მარანი')}</div>
               <h2 className="landing-title">MyCellar</h2>
             </div>
             <img className="landing-orn" src="./orn-cellar.svg" alt="" aria-hidden="true" />

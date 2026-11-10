@@ -87,7 +87,7 @@ function Shell() {
     return (
       <div className="landing">
         <div className="top">
-          <div className="logo logo-dark">terr<span>oir</span> ◈</div>
+          <div className="logo logo-dark">Terr<span>oir</span> ◈</div>
           <div className="topright">{userChip}<span className="pill">{t('DEMO DATA', 'დემო მონაცემები')}</span>{langSwitch}</div>
         </div>
         <div className="content">
@@ -102,7 +102,7 @@ function Shell() {
     <div className="shell">
       <aside className="sidebar">
         <button type="button" className="home-link" onClick={() => go({ kind: 'home' })}>← Terroir <small>· {t('Home', 'მთავარი')}</small></button>
-        <div className="logo">terr<span>oir</span> ◈</div>
+        <div className="logo">Terr<span>oir</span> ◈</div>
         <div className="tagline">{t('VINEYARD INTELLIGENCE', 'ვენახის მართვა')}</div>
         <nav className="navgroup" aria-label={t('MyVineyard', 'MyVineyard')}>
           <button className={`nav${view.kind === 'estate' ? ' active' : ''}`} onClick={() => go({ kind: 'estate' })}>
